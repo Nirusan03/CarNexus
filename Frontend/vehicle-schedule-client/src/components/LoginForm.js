@@ -21,7 +21,13 @@ const LoginForm = () => {
 
     if (response.ok) {
       localStorage.setItem("token", data.access_token);
-      navigate("/home"); // Redirect to dashboard
+      localStorage.setItem("role_id", data.role_id);
+
+      if (data.role_id === 1) {
+        navigate("/home"); // Redirect customers to dashboard
+      } else if (data.role_id === 2) {
+        navigate("/business-dashboard"); // Redirect service owners
+      }
     } else {
       setError(data.msg || "Login failed");
     }
@@ -34,23 +40,15 @@ const LoginForm = () => {
         {error && <p style={{ color: "red" }}>{error}</p>}
         <form onSubmit={handleLogin}>
           <div className="input-group">
-            <label>Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+            <label>Email:</label>
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
           </div>
+
           <div className="input-group">
-            <label>Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+            <label>Password:</label>
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
           </div>
+
           <button type="submit">Login</button>
         </form>
       </div>
