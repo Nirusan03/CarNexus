@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 import NavigationBar from "../components/NavigationBar";
 
 const HomePage = () => {
-  const [businessOwners, setBusinessOwners] = useState([]);
+  const [serviceOwners, setServiceOwners] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/business/business-owners")
+    fetch("http://127.0.0.1:5000/service/service-owners")
       .then((response) => response.json())
-      .then((data) => setBusinessOwners(data))
-      .catch((error) => console.error("Error fetching business owners:", error));
+      .then((data) => setServiceOwners(data))
+      .catch((error) => console.error("Error fetching service owners:", error));
   }, []);
 
   return (
@@ -28,14 +28,14 @@ const HomePage = () => {
           </tr>
         </thead>
         <tbody>
-          {businessOwners.map((owner, index) => (
+          {serviceOwners.map((owner, index) => (
             <tr key={index}>
-              <td>{owner.business_name}</td>
+              <td>{owner.owner_name}</td>
               <td>{owner.location}</td>
               <td>{owner.contact}</td>
               <td>{owner.rating}</td>
               <td>
-                <button onClick={() => navigate(`/booking?business=${owner.business_name}`)}>Book Now</button>
+                <button onClick={() => navigate(`/booking?service=${owner.service_name}`)}>Book Now</button>
               </td>
             </tr>
           ))}

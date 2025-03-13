@@ -1,8 +1,8 @@
-# routes/auth_routes.py
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import create_access_token
 from models.user_model import UserModel
 import bcrypt
+import json
 
 auth_bp = Blueprint("auth", __name__)
 
@@ -37,3 +37,22 @@ def register():
     UserModel.create_user(username, email, hashed_password, role_id, extra_data)
 
     return jsonify({"msg": "User registered successfully"}), 201
+
+@auth_bp.route("/login", methods=["POST"])
+def login():
+    data = request.get_json()
+    email = data.get("email")
+    password = data.get("password")
+
+    user = UserModel.find_user_by_email(email)
+    if not user:
+        return jsonify({"msg": "User not found"}), 404
+
+    if not bcrypt.checkpw(password.encode("utf-8"), user["password"]):
+        return jsonify({"msg": "Invalid credentials"}), 401
+
+    access_token = create_access_token(identity=json.dumps({"email": user["email"], "role_id": user["role_id"]}))
+    return jsonify({
+        "access_token": access_token,
+        "role_id": user["role_id"]
+    }), 200

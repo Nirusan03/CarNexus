@@ -1,53 +1,81 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import NavigationBar from "../components/NavigationBar";
 
 const BookingPage = () => {
+  const [serviceOwners, setServiceOwners] = useState([]);
+  const [selectedService, setSelectedService] = useState("");
   const [serviceType, setServiceType] = useState("");
   const [pickupTime, setPickupTime] = useState("");
   const [dropoffTime, setDropoffTime] = useState("");
-  const [business, setBusiness] = useState("");
   const navigate = useNavigate();
-  const location = useLocation();
 
+  // Fetch service owners when page loads
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    setBusiness(params.get("business") || "");
-  }, [location]);
+    fetch("http://127.0.0.1:5000/service/service-owners")
+      .then((response) => response.json())
+      .then((data) => setServiceOwners(data))
+      .catch((error) => console.error("Error fetching service owners:", error));
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
 
-    const response = await fetch("http://127.0.0.1:5000/booking/create", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({
-        business_id: business,
+    if (!token) {
+      alert("Unauthorized. Please log in again.");
+      return;
+    }
+
+    const payload = {
+        service_email: selectedService, // Service provider's email
         service_type: serviceType,
         pickup_time: pickupTime,
         dropoff_time: dropoffTime,
-      }),
-    });
+    };
 
-    if (response.ok) {
-      alert("Booking Successful!");
-      navigate("/home");
-    } else {
-      alert("Booking Failed");
+    console.log("Sending booking request:", payload); // Debugging log
+
+    try {
+        const response = await fetch("http://127.0.0.1:5000/booking/create", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`, // ✅ Ensure token is sent
+            },
+            body: JSON.stringify(payload),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            console.error("Booking failed:", data);
+            alert(`Booking Failed: ${data.msg || "Unknown error"}`);
+        } else {
+            alert("Booking Successful!");
+            navigate("/home");
+        }
+    } catch (error) {
+        console.error("Network error:", error);
+        alert("Failed to connect to the server. Check backend.");
     }
-  };
+};
 
   return (
     <div>
-      <NavigationBar />
+      {/* <NavigationBar /> */}
       <h2>Book a Vehicle Service</h2>
       <form onSubmit={handleSubmit}>
-        <label>Service Provider:</label>
-        <input type="text" value={business} disabled />
+        {/* Dropdown for selecting service provider */}
+        <label>Choose a Service Provider:</label>
+        <select value={selectedService} onChange={(e) => setSelectedService(e.target.value)} required>
+          <option value="">-- Select a Provider --</option>
+          {serviceOwners.map((owner, index) => (
+            <option key={index} value={owner.email}>
+              {owner.owner_name} - {owner.service_name} ({owner.location})
+            </option>
+          ))}
+        </select>
 
         <label>Service Type:</label>
         <input type="text" value={serviceType} onChange={(e) => setServiceType(e.target.value)} required />
