@@ -9,24 +9,37 @@ booking_bp = Blueprint("booking", __name__)
 @jwt_required()
 def create_booking():
     data = request.get_json()
-    user_email = get_jwt_identity()
+    user = get_jwt_identity()  # Extract email and role_id from token
+
+    if user["role_id"] != 1:  # Only customers can create bookings
+        return jsonify({"msg": "Only customers can create bookings"}), 403
+
+    required_fields = ["business_email", "service_type", "pickup_time", "dropoff_time"]
+    if not all(field in data and data[field] for field in required_fields):
+        return jsonify({"msg": "All fields are required"}), 400
 
     booking = {
-        "user_email": user_email,
-        "business_id": data.get("business_id"),
-        "service_type": data.get("service_type"),
-        "pickup_time": data.get("pickup_time"),
-        "dropoff_time": data.get("dropoff_time"),
+        "customer_email": user["email"],
+        "business_email": data["business_email"],
+        "service_type": data["service_type"],
+        "pickup_time": data["pickup_time"],
+        "dropoff_time": data["dropoff_time"],
         "status": "Pending"
     }
 
+    # Insert booking into `bookings` collection
     mongo.db.bookings.insert_one(booking)
-    return jsonify({"msg": "Booking created successfully"}), 201
 
-@booking_bp.route("/history", methods=["GET"])
-@jwt_required()
-def booking_history():
-    user_email = get_jwt_identity()
-    bookings = list(mongo.db.bookings.find({"user_email": user_email}, {"_id": 0}))
-    
-    return jsonify(bookings), 200
+    # Update customer history
+    mongo.db.customers.update_one(
+        {"email": user["email"]},
+        {"$push": {"bookings": booking}}
+    )
+
+    # Update service owner bookings
+    mongo.db.service_owners.update_one(
+        {"email": data["business_email"]},
+        {"$push": {"bookings": booking}}
+    )
+
+    return jsonify({"msg": "Booking created successfully"}), 201
