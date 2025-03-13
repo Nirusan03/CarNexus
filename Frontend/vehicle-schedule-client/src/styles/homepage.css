@@ -1,0 +1,192 @@
+/* Full Page Layout */
+.homepage-container {
+    /* max-width: 95%; */
+    margin: 0 auto;
+    font-family: "Arial", sans-serif;
+    text-align: center;
+}
+
+/* 🔥 Animated Ad Banner */
+.ad-banner {
+    background: #ffcc00;
+    color: #333;
+    text-align: center;
+    padding: 12px;
+    font-weight: bold;
+    font-size: 18px;
+    animation: slideIn 1s ease-in-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* ⭐ Featured Services */
+.featured-services {
+    background: #fff;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-in-out;
+}
+
+.featured-services h2 {
+    color: #2e8b57;
+    margin-bottom: 15px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.service-box {
+    background: #2e8b57;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.service-box:hover {
+    transform: scale(1.1);
+    background: #276749;
+}
+
+/* 🚀 Cool Animated Table */
+.table-container {
+    overflow-x: auto;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.table-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* 🛠️ Stylish Service Table */
+.service-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    overflow: hidden;
+    border-radius: 10px;
+    animation: fadeInUp 1s ease-in-out;
+}
+
+/* 🔥 Header Styling */
+.service-table th {
+    background: linear-gradient(45deg, #2e8b57, #276749);
+    color: white;
+    padding: 14px;
+    text-align: left;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* 🎭 Row Styling */
+.service-table td {
+    padding: 14px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    transition: background 0.3s ease-in-out;
+}
+
+/* 🏎️ Hover Effects */
+.service-table tr:hover {
+    background: #f5f5f5;
+    transform: scale(1.01);
+}
+
+/* 🚗 Booking Button */
+.book-button {
+    background: linear-gradient(45deg, #2e8b57, #276749);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.book-button:hover {
+    background: linear-gradient(45deg, #276749, #1f5e45);
+    transform: scale(1.08);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ✨ Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 💬 Testimonials */
+.testimonials {
+    background: white;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.testimonials h2 {
+    color: #2e8b57;
+}
+
+.testimonial-box {
+    background: #f9f9f9;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 8px;
+    font-style: italic;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* ❓ FAQ Section */
+.faq-section {
+    margin-top: 30px;
+}
+
+.faq {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+    animation: fadeIn 1.8s ease-in-out;
+}
+
+.faq h3 {
+    color: #2e8b57;
+}
+
+/* 🌍 Footer */
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 15px;
+    background: #2e8b57;
+    color: white;
+    font-size: 14px;
+}

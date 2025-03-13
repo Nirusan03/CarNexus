@@ -1,38 +1,128 @@
+/* Ensure Full-Screen Layout */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: "Arial", sans-serif;
+  background: #f4f4f4;
+}
+
+/* Main App Container */
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Animated Header */
+.App-header {
+  background-color: #2e8b57;
+  min-height: 100px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: 24px;
+  font-weight: bold;
   color: white;
+  animation: fadeInDown 1s ease-in-out;
 }
 
-.App-link {
-  color: #61dafb;
+/* Footer Styling */
+.footer {
+  text-align: center;
+  padding: 15px;
+  background: #2e8b57;
+  color: white;
+  font-size: 14px;
+  width: 100%;
 }
 
-@keyframes App-logo-spin {
+/* Fade-In Animation */
+@keyframes fadeInDown {
   from {
-    transform: rotate(0deg);
+      opacity: 0;
+      transform: translateY(-20px);
   }
   to {
-    transform: rotate(360deg);
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Button Animation */
+.book-button {
+  background: #2e8b57;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.book-button:hover {
+  background: #276749;
+  transform: scale(1.05);
+}
+
+/* Animated Ad Banner */
+.ad-banner {
+  background: #ffcc00;
+  color: #333;
+  text-align: center;
+  padding: 12px;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 20px;
+  animation: bounceIn 1s ease-in-out;
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.9); opacity: 0; }
+  60% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+/* Table Styling */
+.service-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+.service-table th {
+  background: #2e8b57;
+  color: white;
+  padding: 14px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.service-table td {
+  padding: 14px;
+  border-bottom: 1px solid #ddd;
+}
+
+.service-table tr:hover {
+  background: #f1f1f1;
+}
+
+/* Fade-In Animation for Table */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
   }
 }

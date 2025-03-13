@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
+import "../styles/navbar.css";
 
 const NavigationBar = () => {
   return (
-    <nav style={{ background: "#2e8b57", padding: "10px", marginBottom: "20px" }}>
-      <Link to="/home" style={{ margin: "10px", color: "white", textDecoration: "none" }}>Home</Link>
-      <Link to="/booking" style={{ margin: "10px", color: "white", textDecoration: "none" }}>Bookings</Link>  {/* Fixed Path */}
-      <Link to="/account" style={{ margin: "10px", color: "white", textDecoration: "none" }}>User Account</Link>
+    <nav className="navbar">
+      <div className="logo">CarNexus</div>
+      <ul className="nav-links">
+        <li><Link to="/home">Home</Link></li>
+        <li><Link to="/booking">Bookings</Link></li>
+        <li><Link to="/account">User Account</Link></li>
+      </ul>
     </nav>
   );
 };
