@@ -35,7 +35,7 @@ const HomePage = () => {
               <td>{owner.contact}</td>
               <td>{owner.rating}</td>
               <td>
-                <button onClick={() => navigate(`/booking?service=${owner.service_name}`)}>Book Now</button>
+              <button onClick={() => navigate(`/booking?service=${owner.owner_name}`)}>Book Now</button>
               </td>
             </tr>
           ))}

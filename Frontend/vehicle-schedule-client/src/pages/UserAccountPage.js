@@ -8,14 +8,18 @@ const UserAccountPage = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    fetch("http://127.0.0.1:5000/account", {
+    fetch("http://127.0.0.1:5000/account/details", {
       method: "GET",
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { "Authorization": `Bearer ${token}` },
     })
       .then((response) => response.json())
       .then((data) => {
-        setUser(data.user);
-        setBookings(data.bookings);
+        if (data.msg) {
+          console.error("Error:", data.msg);
+        } else {
+          setUser(data.user);
+          setBookings(data.bookings);
+        }
       })
       .catch((error) => console.error("Error fetching user details:", error));
   }, []);
@@ -36,7 +40,7 @@ const UserAccountPage = () => {
             <ul>
               {bookings.map((booking, index) => (
                 <li key={index}>
-                  {booking.service_type} at {booking.business_id} | Status: {booking.status}
+                  {booking.service_type} at {booking.service_email} | Status: {booking.status}
                 </li>
               ))}
             </ul>

@@ -5,6 +5,7 @@ import config
 from routes.auth_routes import auth_bp
 from routes.booking_routes import booking_bp
 from routes.service_routes import service_bp
+from routes.account_routes import account_bp
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -19,6 +20,7 @@ db = init_db(app)
 app.register_blueprint(auth_bp, url_prefix="/auth")
 app.register_blueprint(booking_bp, url_prefix="/booking")
 app.register_blueprint(service_bp, url_prefix="/service")
+app.register_blueprint(account_bp, url_prefix="/account")
 
 if __name__ == "__main__":
     app.run(debug=True)
