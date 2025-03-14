@@ -128,10 +128,10 @@ const BookingPage = () => {
       </div>
 
       {/* Footer */}
-      <footer className="footer">
+      {/* <footer className="footer">
         <p>© 2025 CarNexus. All rights reserved.</p>
         <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Contact Us</a></p>
-      </footer>
+      </footer> */}
     </div>
   );
 };

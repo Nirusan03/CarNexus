@@ -94,9 +94,9 @@ const HomePage = () => {
       </div>
 
       {/* Footer */}
-      <footer className="footer">
+      {/* <footer className="footer">
         <p>© 2025 CarNexus. All rights reserved.</p>
-      </footer>
+      </footer> */}
     </div>
   );
 };
