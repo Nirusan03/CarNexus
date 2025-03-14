@@ -6,7 +6,7 @@
     text-align: center;
 }
 
-/* 🔥 Animated Ad Banner */
+/* Animated Ad Banner */
 .ad-banner {
     background: #ffcc00;
     color: #333;
@@ -22,7 +22,7 @@
     to { transform: translateY(0); opacity: 1; }
 }
 
-/* ⭐ Featured Services */
+/* Featured Services */
 .featured-services {
     background: #fff;
     padding: 20px;
@@ -75,7 +75,7 @@
     box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* 🛠️ Stylish Service Table */
+/* Stylish Service Table */
 .service-table {
     width: 100%;
     border-collapse: collapse;
@@ -85,7 +85,7 @@
     animation: fadeInUp 1s ease-in-out;
 }
 
-/* 🔥 Header Styling */
+/* header Styling */
 .service-table th {
     background: linear-gradient(45deg, #2e8b57, #276749);
     color: white;
@@ -96,7 +96,7 @@
     letter-spacing: 1px;
 }
 
-/* 🎭 Row Styling */
+/* Row Styling */
 .service-table td {
     padding: 14px;
     border-bottom: 1px solid #ddd;
@@ -104,13 +104,13 @@
     transition: background 0.3s ease-in-out;
 }
 
-/* 🏎️ Hover Effects */
+/* Hover Effects */
 .service-table tr:hover {
     background: #f5f5f5;
     transform: scale(1.01);
 }
 
-/* 🚗 Booking Button */
+/* Booking Button */
 .book-button {
     background: linear-gradient(45deg, #2e8b57, #276749);
     color: white;
@@ -129,7 +129,7 @@
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* ✨ Animations */
+/* Animations */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -141,7 +141,7 @@
     }
 }
 
-/* 💬 Testimonials */
+/* Testimonials */
 .testimonials {
     background: white;
     padding: 20px;
@@ -163,7 +163,7 @@
     animation: fadeIn 1.5s ease-in-out;
 }
 
-/* ❓ FAQ Section */
+/* FAQ Section */
 .faq-section {
     margin-top: 30px;
 }
@@ -181,7 +181,7 @@
     color: #2e8b57;
 }
 
-/* 🌍 Footer */
+/* Footer */
 .footer {
     text-align: center;
     margin-top: 30px;

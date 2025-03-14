@@ -18,12 +18,12 @@ const HomePage = () => {
     <div className="homepage-container">
       <NavigationBar />
 
-      {/* 🔥 Animated Ad Banner */}
+      {/* Animated Ad Banner */}
       <div className="ad-banner">
         <h3>🚗 Get 20% Off on Your First Booking! Limited Time Offer! 🚗</h3>
       </div>
 
-      {/* ⭐ Featured Services Section */}
+      {/* Featured Services Section */}
       <div className="featured-services">
         <h2>🔧 Our Premium Services</h2>
         <div className="services-grid">
@@ -69,7 +69,7 @@ const HomePage = () => {
         </table>
       </div>
 
-      {/* ⭐ Customer Testimonials */}
+      {/* Customer Testimonials */}
       <div className="testimonials">
         <h2>💬 What Our Customers Say</h2>
         <div className="testimonial-box">
@@ -80,7 +80,7 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* ❓ FAQ Section */}
+      {/* FAQ Section */}
       <div className="faq-section">
         <h2>❓ Frequently Asked Questions</h2>
         <div className="faq">
@@ -93,7 +93,7 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* 🌍 Footer */}
+      {/* Footer */}
       <footer className="footer">
         <p>© 2025 CarNexus. All rights reserved.</p>
       </footer>
