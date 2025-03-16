@@ -1,0 +1,168 @@
+{
+	"info": {
+		"_postman_id": "f856eb4c-88c7-406c-8c37-95fd8c1d23de",
+		"name": "CarNexus",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41734941",
+		"_collection_link": "https://employee-sync.postman.co/workspace/Employee-Sync-Workspace~c8674949-f15e-42ba-8403-a8541c68f179/collection/41734941-f856eb4c-88c7-406c-8c37-95fd8c1d23de?action=share&source=collection_link&creator=41734941"
+	},
+	"item": [
+		{
+			"name": "Create_Service_Owner",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"drive_line\",\r\n  \"email\": \"driveline@example.com\",\r\n  \"password\": \"driveline123\",\r\n  \"role_id\": 2,\r\n  \"extra_data\": {\r\n    \"business_name\": \"Elite Mechanics & Repairs\",\r\n    \"location\": \"444 Broadway, Seattle\",\r\n    \"contact\": \"555-2223\",\r\n    \"rating\": 4.8\r\n  }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/auth/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"shakeel@example.com\",\r\n  \"password\": \"shakeel123\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/auth/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Service Owners",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/service/service-owners",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"service",
+						"service-owners"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Account details",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0MTkxMTg2MCwianRpIjoiNDk2YjViMDktMDgyYy00ZjA2LTkyZjItZTEzOTZjYjc4ZDg0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IntcImVtYWlsXCI6IFwic2hha2VlbEBleGFtcGxlLmNvbVwiLCBcInJvbGVfaWRcIjogMX0iLCJuYmYiOjE3NDE5MTE4NjAsImNzcmYiOiI1MGQ2ZWQyMi0yMTc1LTQzMDItODY5MC1kNGFmNTM3MWM4MzIiLCJleHAiOjE3NDE5MTI3NjB9.VTnIXGM2PsjZsQLjDQ91T3UdKRwEEDUT6o6a_YbyLxY",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5000/account/details",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"account",
+						"details"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create_Customer_User",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"kurusuthan\",\r\n  \"email\": \"kurusuthanl@example.com\",\r\n  \"password\": \"kurusuthanl123\",\r\n  \"role_id\": 1,\r\n  \"extra_data\": {\r\n    \"vehicle_type\": \"Axio\",\r\n    \"purchase_date\": \"2025-03-14\",\r\n    \"ownership_status\": \"First-hand\"\r\n  }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/auth/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
