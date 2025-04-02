@@ -33,8 +33,9 @@ def create_booking():
     if not all(field in data and data[field] for field in required_fields):
         return jsonify({"msg": "All fields are required"}), 400
 
+    # Extracted from JWT token
     booking = {
-        "customer_email": user["email"],  # Extracted from JWT token
+        "customer_email": user["email"],  
         "service_email": data["service_email"],
         "service_type": data["service_type"],
         "pickup_time": data["pickup_time"],
