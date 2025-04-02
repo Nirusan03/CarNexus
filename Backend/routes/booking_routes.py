@@ -17,12 +17,14 @@ def create_booking():
     except json.JSONDecodeError:
         return jsonify({"msg": "Invalid token format."}), 400
 
-    print("Decoded JWT Identity:", user)  # Debugging: Should now be a dictionary
+    # Debugging: Should now be a dictionary
+    print("Decoded JWT Identity:", user)  
 
     if not isinstance(user, dict) or "role_id" not in user or "email" not in user:
         return jsonify({"msg": "Invalid user data in token."}), 400
 
-    if user["role_id"] != 1:  # Only customers (role_id=1) can book services
+    # Only customers (role_id=1) can book services
+    if user["role_id"] != 1:  
         return jsonify({"msg": "Only customers can create bookings"}), 403
 
     data = request.get_json()
