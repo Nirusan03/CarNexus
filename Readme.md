@@ -3,7 +3,7 @@
 Welcome to **CarNexus**, the ultimate platform for booking vehicle services with ease. This system consists of a **React.js frontend** and a **Flask backend**, providing a seamless and interactive experience for customers.
 
 ---
-
+ 
 ## 📌 **Project Structure**
 ```
 CarNexus/
