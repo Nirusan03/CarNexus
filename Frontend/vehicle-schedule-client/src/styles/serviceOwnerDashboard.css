@@ -1,0 +1,267 @@
+/* Container */
+.account-container {
+  max-width: 1400px; /* Increased from 1200px */
+  margin: 60px auto;
+  padding: 0 24px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #1e392a;
+}
+
+/* Heading */
+.account-container h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 36px;
+  font-weight: 700;
+  color: #1e392a;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.5px;
+}
+
+/* Booking List */
+.booking-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(440px, 1fr)); /* Increased card width */
+  gap: 28px;
+}
+
+/* Booking Card */
+.booking-card {
+  background: #f5fff8;
+  border-radius: 16px;
+  padding: 28px 32px; /* Increased padding */
+  border: 1px solid #c9e8d2;
+  margin-bottom: 30px;
+  /* width: 300px; */
+  box-shadow: 0 6px 14px rgba(0, 128, 0, 0.05);
+  animation: fadeInUp 0.4s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.booking-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 128, 0, 0.08);
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.booking-card p {
+  margin: 6px 0;
+  font-size: 15px;
+  color: #2c4630;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.booking-card strong {
+  font-weight: 600;
+  color: #1e392a;
+}
+
+/* NEW: Sender Info Display */
+.booking-card p.from-line {
+  margin: 6px 0 12px;
+  font-size: 14px;
+  font-style: italic;
+  color: #2a4f39;
+  text-align: left;
+}
+
+/* Status Update */
+.status-update {
+  margin-top: 12px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.status-update select {
+  padding: 10px 16px;
+  font-size: 15px;
+  border-radius: 8px;
+  background-color: #f1fdf3;
+  border: 1px solid #a3d9a5;
+  color: #1e392a;
+  transition: border-color 0.3s;
+}
+
+.status-update select:focus {
+  border-color: #27ae60;
+  outline: none;
+}
+
+.status-update button {
+  background: linear-gradient(to right, #27ae60, #219150);
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  color: white;
+  transition: background 0.3s ease, transform 0.2s;
+}
+
+.status-update button:hover {
+  background: linear-gradient(to right, #1e8449, #196c3c);
+  transform: scale(1.03);
+}
+
+/* Report Form */
+.report-form {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #d9f1de;
+}
+
+.report-form h4 {
+  margin-bottom: 14px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #1e392a;
+  border-bottom: 1px solid #b7ddb8;
+  padding-bottom: 6px;
+}
+
+.report-form textarea,
+.report-form input {
+  width: 100%;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+  border-radius: 8px;
+  border: 1px solid #b9e2bb;
+  font-size: 14px;
+  resize: vertical;
+  transition: border-color 0.3s;
+  background-color: #ffffff;
+}
+
+.report-form textarea:focus,
+.report-form input:focus {
+  border-color: #27ae60;
+  outline: none;
+}
+
+.report-form button {
+  background-color: #27ae60;
+  color: white;
+  padding: 9px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.report-form button:hover {
+  background-color: #1f8e4d;
+  transform: scale(1.03);
+}
+
+/* Report Summary */
+.report-summary {
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid #d8f4df;
+}
+
+.report-summary h4 {
+  margin-bottom: 12px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #1e392a;
+  border-bottom: 1px solid #c1e9c5;
+  padding-bottom: 6px;
+}
+
+.report-summary p {
+  margin: 6px 0;
+  font-size: 15px;
+  color: #2d4f34;
+  line-height: 1.4;
+}
+
+.report-summary strong {
+  font-weight: 600;
+  color: #000;
+}
+
+/* Optional Card Style for Owner Info */
+.owner-info-card {
+  background-color: #edfdf0;
+  border: 1px solid #cdeed0;
+  padding: 16px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 100, 0, 0.04);
+}
+
+/* Enhanced Report Section Wrapper */
+.report-section {
+  margin-top: 24px;
+  padding: 20px;
+  border-top: 1px dashed #cdeed0;
+  background-color: #f7fff9;
+  border-radius: 12px;
+}
+
+/* Unified Action Buttons */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.action-buttons button {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.action-buttons .submit-btn {
+  background: linear-gradient(to right, #27ae60, #219150);
+  color: white;
+}
+
+.action-buttons .submit-btn:hover {
+  background: linear-gradient(to right, #1e8449, #196c3c);
+  transform: scale(1.02);
+}
+
+.action-buttons .status-btn {
+  background: linear-gradient(to right, #1b8ec6, #1d78b6);
+  color: white;
+}
+
+.action-buttons .status-btn:hover {
+  background: linear-gradient(to right, #15648f, #175a7d);
+  transform: scale(1.02);
+}
+
+/* Dropdown Styling */
+.status-update select {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #a9d9b0;
+  margin-top: 10px;
+  background-color: #f3fdf5;
+  color: #1e392a;
+}

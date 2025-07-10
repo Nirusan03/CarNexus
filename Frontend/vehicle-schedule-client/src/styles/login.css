@@ -54,3 +54,32 @@ button {
 button:hover {
     background: #276749;
 }
+
+.back-button {
+  margin-top: 10px;
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #ccc;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+.signup-link {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #2e8b57;
+}
+
+.signup-link a {
+  color: #2e8b57;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+  color: #276749;
+}

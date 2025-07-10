@@ -160,3 +160,52 @@ def add_service_report(booking_id):
         return jsonify({"msg": "Booking not found or access denied"}), 404
 
     return jsonify({"msg": "Service report added successfully"}), 200
+
+# Get all bookings for logged-in customer
+@booking_bp.route("/my-bookings", methods=["GET"])
+@jwt_required()
+def get_user_bookings():
+    """Returns all bookings for the logged-in customer."""
+    user_str = get_jwt_identity()
+    try:
+        user = json.loads(user_str)
+    except json.JSONDecodeError:
+        return jsonify({"msg": "Invalid token format"}), 400
+
+    if user["role_id"] != 1:
+        return jsonify({"msg": "Only customers can view their bookings"}), 403
+
+    bookings = list(mongo.db.bookings.find({"customer_email": user["email"]}))
+    for b in bookings:
+        b["_id"] = str(b["_id"])  # Convert ObjectId to string
+    return jsonify({"bookings": bookings}), 200
+
+# Get all bookings for logged-in service owner
+@booking_bp.route("/owner-bookings", methods=["GET"])
+@jwt_required()
+def get_owner_bookings():
+    """Returns all bookings received by the service owner."""
+    user_str = get_jwt_identity()
+    try:
+        user = json.loads(user_str)
+    except json.JSONDecodeError:
+        return jsonify({"msg": "Invalid token format"}), 400
+
+    if user["role_id"] != 2:
+        return jsonify({"msg": "Only service owners can view their bookings"}), 403
+
+    bookings = list(mongo.db.bookings.find({"service_email": user["email"]}))
+    for b in bookings:
+        b["_id"] = str(b["_id"])
+    return jsonify({"bookings": bookings}), 200
+
+@booking_bp.route("/owner/<service_email>", methods=["GET"])
+def get_bookings_by_service_email(service_email):
+    """
+    Fetch all bookings for a specific service owner using their email.
+    This is used to populate the service dashboard.
+    """
+    bookings = list(mongo.db.bookings.find({"service_email": service_email}))
+    for b in bookings:
+        b["_id"] = str(b["_id"])
+    return jsonify({"bookings": bookings}), 200

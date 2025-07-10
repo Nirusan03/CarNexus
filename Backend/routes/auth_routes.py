@@ -51,8 +51,13 @@ def login():
     if not bcrypt.checkpw(password.encode("utf-8"), user["password"]):
         return jsonify({"msg": "Invalid credentials"}), 401
 
-    access_token = create_access_token(identity=json.dumps({"email": user["email"], "role_id": user["role_id"]}))
+    access_token = create_access_token(identity=json.dumps({
+        "email": user["email"],
+        "role_id": user["role_id"]
+    }))
+
     return jsonify({
         "access_token": access_token,
-        "role_id": user["role_id"]
+        "role_id": user["role_id"],
+        "email": user["email"]
     }), 200
