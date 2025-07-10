@@ -49,8 +49,8 @@ const ServiceOwnerDashboard = () => {
       const status = selectedStatuses[bookingId];
       const fromEmail = ownerInfo?.email;
 
-      if (!status) {
-        alert("Please select a status.");
+      if (!status || status.trim() === "") {
+        alert("Please select a status before updating.");
         return;
       }
 
@@ -88,7 +88,28 @@ const ServiceOwnerDashboard = () => {
   const submitReport = async (bookingId) => {
     try {
       const report = reportForm[bookingId];
-      if (!report) return;
+      if (!report) {
+        alert("Please fill out the report before submitting.");
+        return;
+      }
+
+      const { issues_found, work_done, total_cost } = report;
+
+      if (!issues_found || issues_found.trim() === "") {
+        alert("Please describe the issues found.");
+        return;
+      }
+
+      if (!work_done || work_done.trim() === "") {
+        alert("Please describe the work done.");
+        return;
+      }
+
+      const cost = parseFloat(total_cost);
+      if (isNaN(cost) || cost < 0) {
+        alert("Please enter a valid positive total cost.");
+        return;
+      }
 
       await axios.patch(
         `http://localhost:5000/booking/add-report/${bookingId}`,

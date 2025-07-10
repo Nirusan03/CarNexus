@@ -8,8 +8,31 @@ const LoginForm = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  // Basic email and password format validation
+  const validateForm = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+    // At least 6 characters, one letter and one number
+
+    if (!emailRegex.test(email)) {
+      setError("Please enter a valid email address.");
+      return false;
+    }
+
+    if (!passwordRegex.test(password)) {
+      setError(
+        "Password must be at least 6 characters long and contain at least one letter and one number."
+      );
+      return false;
+    }
+
+    return true;
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    if (!validateForm()) return;
 
     try {
       const response = await fetch("http://localhost:5000/auth/login", {
@@ -23,7 +46,7 @@ const LoginForm = () => {
       if (response.ok) {
         localStorage.setItem("token", data.access_token);
         localStorage.setItem("role_id", data.role_id.toString());
-        localStorage.setItem("email", data.email); // ✅ Add this line
+        localStorage.setItem("email", data.email);
         console.log("Logged in as role:", data.role_id);
 
         if (parseInt(data.role_id) === 1) {
@@ -31,9 +54,7 @@ const LoginForm = () => {
         } else if (parseInt(data.role_id) === 2) {
           navigate("/service-dashboard"); // Service owner
         }
-      }
-
-      else {
+      } else {
         setError(data.msg || "Login failed");
       }
     } catch (err) {
@@ -42,7 +63,7 @@ const LoginForm = () => {
   };
 
   const handleBack = () => {
-    navigate(-1); // Navigate back
+    navigate(-1);
   };
 
   return (
@@ -56,7 +77,10 @@ const LoginForm = () => {
             <input
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setError("");
+              }}
               required
             />
           </div>
@@ -66,7 +90,10 @@ const LoginForm = () => {
             <input
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setError("");
+              }}
               required
             />
           </div>
@@ -78,7 +105,7 @@ const LoginForm = () => {
           </p>
 
           <button type="button" onClick={handleBack} className="back-button">
-            ← Sign up here
+            ← Back
           </button>
         </form>
       </div>

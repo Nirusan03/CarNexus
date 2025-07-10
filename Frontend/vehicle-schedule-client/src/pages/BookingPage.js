@@ -5,12 +5,13 @@ import "../styles/booking.css";
 
 const BookingPage = () => {
   const [serviceOwners, setServiceOwners] = useState([]);
-  const [selectedService, setSelectedService] = useState(""); // this holds service owner's email
-  const [selectedServiceName, setSelectedServiceName] = useState(""); // display name only
+  const [selectedService, setSelectedService] = useState("");
+  const [selectedServiceName, setSelectedServiceName] = useState("");
   const [serviceType, setServiceType] = useState("");
   const [pickupTime, setPickupTime] = useState("");
   const [dropoffTime, setDropoffTime] = useState("");
   const [isFromHome, setIsFromHome] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -32,12 +33,46 @@ const BookingPage = () => {
         (owner) => owner.owner_name === serviceName
       );
       if (selectedOwner) {
-        setSelectedService(selectedOwner.email); // ✅ set email for logic
-        setSelectedServiceName(selectedOwner.owner_name); // ✅ for display
+        setSelectedService(selectedOwner.email);
+        setSelectedServiceName(selectedOwner.owner_name);
         setIsFromHome(true);
       }
     }
   }, [location, serviceOwners]);
+
+  const validateForm = () => {
+    if (!isFromHome && !selectedService) {
+      setError("Please select a service provider.");
+      return false;
+    }
+
+    if (!serviceType.trim() || serviceType.length < 3) {
+      setError("Service type must be at least 3 characters long.");
+      return false;
+    }
+
+    const pickup = new Date(pickupTime);
+    const dropoff = new Date(dropoffTime);
+    const now = new Date();
+
+    if (isNaN(pickup.getTime()) || isNaN(dropoff.getTime())) {
+      setError("Please select valid date and time.");
+      return false;
+    }
+
+    if (pickup < now || dropoff < now) {
+      setError("Pickup and drop-off times must be in the future.");
+      return false;
+    }
+
+    if (pickup >= dropoff) {
+      setError("Drop-off time must be after pickup time.");
+      return false;
+    }
+
+    setError(""); // Clear previous errors
+    return true;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,6 +82,8 @@ const BookingPage = () => {
       alert("Unauthorized. Please log in again.");
       return;
     }
+
+    if (!validateForm()) return;
 
     const payload = {
       service_email: selectedService,
@@ -72,7 +109,6 @@ const BookingPage = () => {
       } else {
         alert("🎉 Booking Successful!");
 
-        // ✅ Format calendar link
         const calendarUrl = `https://calendar.google.com/calendar/u/0/r/eventedit?text=${encodeURIComponent(
           `Vehicle Service: ${serviceType}`
         )}&dates=${pickupTime.replace(/[-:]/g, "").slice(0, -2)}/${dropoffTime
@@ -92,25 +128,19 @@ const BookingPage = () => {
   return (
     <div className="booking-page">
       <NavigationBar />
-      {/* Banner */}
       <div className="promo-banner">
         <p>🔥 Limited Offer: Get 30% Off on Your First Service! 🔥</p>
       </div>
 
-      {/* Ads */}
       <div className="ads-container">
-        <div className="ad">
-          💡 Need a Quick Fix? Find the Best Service Providers Now!
-        </div>
-        <div className="ad">
-          🎉 Special Discount: 10% Off on All Premium Services!
-        </div>
+        <div className="ad">💡 Need a Quick Fix? Find the Best Service Providers Now!</div>
+        <div className="ad">🎉 Special Discount: 10% Off on All Premium Services!</div>
         <div className="ad">🛠️ Get Your Car Serviced with Experts at CarNexus!</div>
       </div>
 
-      {/* Form */}
       <div className="booking-card">
         <h2>📅 Book a Vehicle Service</h2>
+        {error && <p style={{ color: "red" }}>{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Service Provider:</label>

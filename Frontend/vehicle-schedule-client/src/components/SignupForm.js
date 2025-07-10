@@ -1,6 +1,5 @@
-// components/SignupForm.js
 import { useState } from "react";
-import { useNavigate, Link} from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "../styles/signup.css";
 
 const SignupForm = () => {
@@ -20,13 +19,78 @@ const SignupForm = () => {
     rating: ""
   });
 
+  const [error, setError] = useState("");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    setError(""); // Clear error on change
+  };
+
+  const validateForm = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+
+    const {
+      username,
+      email,
+      password,
+      role_id,
+      vehicle_type,
+      purchase_date,
+      service_name,
+      location,
+      contact_info,
+      rating
+    } = formData;
+
+    if (!username.trim()) {
+      setError("Username is required.");
+      return false;
+    }
+
+    if (!emailRegex.test(email)) {
+      setError("Please enter a valid email address.");
+      return false;
+    }
+
+    if (!passwordRegex.test(password)) {
+      setError("Password must be at least 6 characters and include a letter and a number.");
+      return false;
+    }
+
+    if (role_id === "1") {
+      if (!vehicle_type.trim() || !purchase_date.trim()) {
+        setError("Please fill in all customer fields.");
+        return false;
+      }
+    }
+
+    if (role_id === "2") {
+      if (
+        !service_name.trim() ||
+        !location.trim() ||
+        !contact_info.trim() ||
+        rating === ""
+      ) {
+        setError("Please fill in all service owner fields.");
+        return false;
+      }
+
+      const numericRating = parseFloat(rating);
+      if (isNaN(numericRating) || numericRating < 0 || numericRating > 5) {
+        setError("Rating must be a number between 0 and 5.");
+        return false;
+      }
+    }
+
+    return true;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateForm()) return;
 
     const {
       username,
@@ -63,7 +127,7 @@ const SignupForm = () => {
       username,
       email,
       password,
-      role_id: parseInt(role_id),  // Ensure it's an integer
+      role_id: parseInt(role_id),
       extra_data
     };
 
@@ -80,13 +144,12 @@ const SignupForm = () => {
         alert("Registration successful! Please login.");
         navigate("/");
       } else {
-        alert(data.msg || "Registration failed.");
+        setError(data.msg || "Registration failed.");
       }
     } catch (error) {
-      alert("Server error. Please try again later.");
+      setError("Server error. Please try again later.");
     }
   };
-
 
   const isCustomer = formData.role_id === "1";
   const isServiceOwner = formData.role_id === "2";
@@ -94,6 +157,7 @@ const SignupForm = () => {
   return (
     <div className="login-container">
       <h2>Sign Up</h2>
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <form className="login-form" onSubmit={handleSubmit}>
         <label>Username:</label>
         <input name="username" value={formData.username} onChange={handleChange} required />
@@ -140,13 +204,21 @@ const SignupForm = () => {
             <input name="contact_info" value={formData.contact_info} onChange={handleChange} required />
 
             <label>Rating:</label>
-            <input type="number" step="0.1" max="5" name="rating" value={formData.rating} onChange={handleChange} required />
+            <input
+              type="number"
+              step="0.1"
+              max="5"
+              min="0"
+              name="rating"
+              value={formData.rating}
+              onChange={handleChange}
+              required
+            />
           </>
         )}
 
         <button type="submit">Register</button>
         <Link to="/" className="back-link">← Back to Login</Link>
-
       </form>
     </div>
   );
