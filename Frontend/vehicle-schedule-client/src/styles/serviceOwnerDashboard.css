@@ -21,7 +21,10 @@
 /* Booking List */
 .booking-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(440px, 1fr)); /* Increased card width */
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(440px, 1fr)
+  ); /* Increased card width */
   gap: 28px;
 }
 

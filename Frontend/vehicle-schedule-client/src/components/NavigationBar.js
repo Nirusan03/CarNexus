@@ -6,9 +6,15 @@ const NavigationBar = () => {
     <nav className="navbar">
       <div className="logo">CarNexus</div>
       <ul className="nav-links">
-        <li><Link to="/home">Home</Link></li>
-        <li><Link to="/booking">Bookings</Link></li>
-        <li><Link to="/account">User Account</Link></li>
+        <li>
+          <Link to="/home">Home</Link>
+        </li>
+        <li>
+          <Link to="/booking">Bookings</Link>
+        </li>
+        <li>
+          <Link to="/account">User Account</Link>
+        </li>
       </ul>
     </nav>
   );

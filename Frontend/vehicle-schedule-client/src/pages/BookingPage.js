@@ -19,9 +19,7 @@ const BookingPage = () => {
     fetch("http://127.0.0.1:5000/service/service-owners")
       .then((response) => response.json())
       .then((data) => setServiceOwners(data))
-      .catch((error) =>
-        console.error("Error fetching service owners:", error)
-      );
+      .catch((error) => console.error("Error fetching service owners:", error));
   }, []);
 
   useEffect(() => {
@@ -133,9 +131,15 @@ const BookingPage = () => {
       </div>
 
       <div className="ads-container">
-        <div className="ad">💡 Need a Quick Fix? Find the Best Service Providers Now!</div>
-        <div className="ad">🎉 Special Discount: 10% Off on All Premium Services!</div>
-        <div className="ad">🛠️ Get Your Car Serviced with Experts at CarNexus!</div>
+        <div className="ad">
+          💡 Need a Quick Fix? Find the Best Service Providers Now!
+        </div>
+        <div className="ad">
+          🎉 Special Discount: 10% Off on All Premium Services!
+        </div>
+        <div className="ad">
+          🛠️ Get Your Car Serviced with Experts at CarNexus!
+        </div>
       </div>
 
       <div className="booking-card">

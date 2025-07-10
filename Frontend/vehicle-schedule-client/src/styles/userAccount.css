@@ -1,144 +1,144 @@
 /* General Page Styling */
 .account-page {
-    font-family: "Poppins", sans-serif;
-    background: linear-gradient(135deg, #2e8b57, #276749);
-    text-align: center;
-    min-height: 100vh;
-    /* padding-top: 50px; */
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #2e8b57, #276749);
+  text-align: center;
+  min-height: 100vh;
+  /* padding-top: 50px; */
 }
 
 /* Moving Bike Animation */
 .bike-animation {
-    font-size: 50px;
-    position: absolute;
-    top: 10px;
-    left: -100px;
-    animation: moveBike 8s linear infinite;
+  font-size: 50px;
+  position: absolute;
+  top: 10px;
+  left: -100px;
+  animation: moveBike 8s linear infinite;
 }
 
 @keyframes moveBike {
-    from {
-        left: -100px;
-    }
-    to {
-        left: 100%;
-    }
+  from {
+    left: -100px;
+  }
+  to {
+    left: 100%;
+  }
 }
 
 /* Welcome Banner */
 .welcome-banner {
-    background: #ffcc00;
-    padding: 15px;
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-    width: 80%;
-    margin: 20px auto;
-    border-radius: 10px;
-    animation: fadeIn 1s ease-in-out;
+  background: #ffcc00;
+  padding: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  width: 80%;
+  margin: 20px auto;
+  border-radius: 10px;
+  animation: fadeIn 1s ease-in-out;
 }
 
 /* User Account Container */
 .account-container {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
-    width: 50%;
-    margin: 20px auto;
-    text-align: left;
-    animation: slideIn 0.8s ease-in-out;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+  width: 50%;
+  margin: 20px auto;
+  text-align: left;
+  animation: slideIn 0.8s ease-in-out;
 }
 
 @keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* User Details */
 .user-details h3 {
-    font-size: 22px;
-    color: #2e8b57;
-    margin-bottom: 10px;
+  font-size: 22px;
+  color: #2e8b57;
+  margin-bottom: 10px;
 }
 
 .user-details p {
-    font-size: 16px;
-    margin-bottom: 8px;
+  font-size: 16px;
+  margin-bottom: 8px;
 }
 
 /* 📅 Booking History */
 .booking-history {
-    margin-top: 25px;
+  margin-top: 25px;
 }
 
 .booking-entry {
-    font-size: 16px;
-    padding: 8px;
-    background: #f4f4f4;
-    border-radius: 5px;
-    margin: 5px 0;
+  font-size: 16px;
+  padding: 8px;
+  background: #f4f4f4;
+  border-radius: 5px;
+  margin: 5px 0;
 }
 
 .status {
-    font-weight: bold;
-    color: #ff6600;
+  font-weight: bold;
+  color: #ff6600;
 }
 
 /* ✨ Member Perks */
 .perks-container {
-    background: white;
-    padding: 30px;
-    margin: 30px auto;
-    width: 70%;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  background: white;
+  padding: 30px;
+  margin: 30px auto;
+  width: 70%;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .perks-list {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
 }
 
 .perk {
-    background: #2e8b57;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 16px;
-    transition: transform 0.3s ease-in-out;
+  background: #2e8b57;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  transition: transform 0.3s ease-in-out;
 }
 
 .perk:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 /* Footer */
 .footer {
-    background: #2e8b57;
-    color: white;
-    padding: 15px;
-    font-size: 14px;
-    width: 98.4%;
-    position: absolute;
-    bottom: 0;
+  background: #2e8b57;
+  color: white;
+  padding: 15px;
+  font-size: 14px;
+  width: 98.4%;
+  position: absolute;
+  bottom: 0;
 }
 
 .footer a {
-    color: #ffcc00;
-    text-decoration: none;
-    font-weight: bold;
+  color: #ffcc00;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .footer a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }

@@ -16,7 +16,7 @@ const SignupForm = () => {
     service_name: "",
     location: "",
     contact_info: "",
-    rating: ""
+    rating: "",
   });
 
   const [error, setError] = useState("");
@@ -41,7 +41,7 @@ const SignupForm = () => {
       service_name,
       location,
       contact_info,
-      rating
+      rating,
     } = formData;
 
     if (!username.trim()) {
@@ -55,7 +55,9 @@ const SignupForm = () => {
     }
 
     if (!passwordRegex.test(password)) {
-      setError("Password must be at least 6 characters and include a letter and a number.");
+      setError(
+        "Password must be at least 6 characters and include a letter and a number."
+      );
       return false;
     }
 
@@ -103,7 +105,7 @@ const SignupForm = () => {
       service_name,
       location,
       contact_info,
-      rating
+      rating,
     } = formData;
 
     let extra_data = {};
@@ -112,14 +114,15 @@ const SignupForm = () => {
       extra_data = {
         vehicle_type,
         purchase_date,
-        ownership_status: is_first_hand === "yes" ? "first-hand" : "second-hand"
+        ownership_status:
+          is_first_hand === "yes" ? "first-hand" : "second-hand",
       };
     } else if (role_id === "2") {
       extra_data = {
         business_name: service_name,
         location,
         contact: contact_info,
-        rating: parseFloat(rating)
+        rating: parseFloat(rating),
       };
     }
 
@@ -128,7 +131,7 @@ const SignupForm = () => {
       email,
       password,
       role_id: parseInt(role_id),
-      extra_data
+      extra_data,
     };
 
     try {
@@ -160,13 +163,30 @@ const SignupForm = () => {
       {error && <p style={{ color: "red" }}>{error}</p>}
       <form className="login-form" onSubmit={handleSubmit}>
         <label>Username:</label>
-        <input name="username" value={formData.username} onChange={handleChange} required />
+        <input
+          name="username"
+          value={formData.username}
+          onChange={handleChange}
+          required
+        />
 
         <label>Email:</label>
-        <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
 
         <label>Password:</label>
-        <input type="password" name="password" value={formData.password} onChange={handleChange} required />
+        <input
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          required
+        />
 
         <label>Role:</label>
         <select name="role_id" value={formData.role_id} onChange={handleChange}>
@@ -178,13 +198,28 @@ const SignupForm = () => {
         {isCustomer && (
           <>
             <label>Vehicle Type:</label>
-            <input name="vehicle_type" value={formData.vehicle_type} onChange={handleChange} required />
+            <input
+              name="vehicle_type"
+              value={formData.vehicle_type}
+              onChange={handleChange}
+              required
+            />
 
             <label>Purchase Date:</label>
-            <input type="date" name="purchase_date" value={formData.purchase_date} onChange={handleChange} required />
+            <input
+              type="date"
+              name="purchase_date"
+              value={formData.purchase_date}
+              onChange={handleChange}
+              required
+            />
 
             <label>First-hand or Second-hand:</label>
-            <select name="is_first_hand" value={formData.is_first_hand} onChange={handleChange}>
+            <select
+              name="is_first_hand"
+              value={formData.is_first_hand}
+              onChange={handleChange}
+            >
               <option value="yes">First-hand</option>
               <option value="no">Second-hand</option>
             </select>
@@ -195,13 +230,28 @@ const SignupForm = () => {
         {isServiceOwner && (
           <>
             <label>Service Name:</label>
-            <input name="service_name" value={formData.service_name} onChange={handleChange} required />
+            <input
+              name="service_name"
+              value={formData.service_name}
+              onChange={handleChange}
+              required
+            />
 
             <label>Location:</label>
-            <input name="location" value={formData.location} onChange={handleChange} required />
+            <input
+              name="location"
+              value={formData.location}
+              onChange={handleChange}
+              required
+            />
 
             <label>Contact Info:</label>
-            <input name="contact_info" value={formData.contact_info} onChange={handleChange} required />
+            <input
+              name="contact_info"
+              value={formData.contact_info}
+              onChange={handleChange}
+              required
+            />
 
             <label>Rating:</label>
             <input
@@ -218,7 +268,9 @@ const SignupForm = () => {
         )}
 
         <button type="submit">Register</button>
-        <Link to="/" className="back-link">← Back to Login</Link>
+        <Link to="/" className="back-link">
+          ← Back to Login
+        </Link>
       </form>
     </div>
   );

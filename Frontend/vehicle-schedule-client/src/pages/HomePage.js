@@ -58,7 +58,9 @@ const HomePage = () => {
                 <td>
                   <button
                     className="book-button"
-                    onClick={() => navigate(`/booking?service=${owner.owner_name}`)}
+                    onClick={() =>
+                      navigate(`/booking?service=${owner.owner_name}`)
+                    }
                   >
                     Book Now
                   </button>
@@ -73,7 +75,10 @@ const HomePage = () => {
       <div className="testimonials">
         <h2>💬 What Our Customers Say</h2>
         <div className="testimonial-box">
-          <p>⭐⭐⭐⭐⭐ "CarNexus helped me find the best service for my car!" - John D.</p>
+          <p>
+            ⭐⭐⭐⭐⭐ "CarNexus helped me find the best service for my car!" -
+            John D.
+          </p>
         </div>
         <div className="testimonial-box">
           <p>⭐⭐⭐⭐⭐ "Super smooth process! Highly recommend." - Sarah L.</p>
@@ -85,7 +90,10 @@ const HomePage = () => {
         <h2>❓ Frequently Asked Questions</h2>
         <div className="faq">
           <h3>📌 How does CarNexus work?</h3>
-          <p>You choose a service provider, book a service, and get your car fixed!</p>
+          <p>
+            You choose a service provider, book a service, and get your car
+            fixed!
+          </p>
         </div>
         <div className="faq">
           <h3>📌 Can I cancel my booking?</h3>

@@ -39,9 +39,16 @@ const UserAccountPage = () => {
         {user ? (
           <div className="user-details">
             <h3>👤 Profile Information</h3>
-            <p><strong>Name:</strong> {user.username}</p>
-            <p><strong>Email:</strong> {user.email}</p>
-            <p><strong>Role:</strong> {user.role_id === 1 ? "Customer" : "Service Owner"}</p>
+            <p>
+              <strong>Name:</strong> {user.username}
+            </p>
+            <p>
+              <strong>Email:</strong> {user.email}
+            </p>
+            <p>
+              <strong>Role:</strong>{" "}
+              {user.role_id === 1 ? "Customer" : "Service Owner"}
+            </p>
           </div>
         ) : (
           <p className="loading">Loading user details...</p>
@@ -53,7 +60,9 @@ const UserAccountPage = () => {
             <ul>
               {bookings.map((booking, index) => (
                 <li key={index} className="booking-entry">
-                  {booking.service_type} at <strong>{booking.service_email}</strong> | Status: <span className="status">{booking.status}</span>
+                  {booking.service_type} at{" "}
+                  <strong>{booking.service_email}</strong> | Status:{" "}
+                  <span className="status">{booking.status}</span>
                 </li>
               ))}
             </ul>

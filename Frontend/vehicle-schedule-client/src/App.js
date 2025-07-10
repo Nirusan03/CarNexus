@@ -27,7 +27,10 @@ function App() {
 
         {/* Private routes for Service Owners (role_id = 2) */}
         <Route element={<PrivateRoute allowedRoles={[2]} />}>
-          <Route path="/service-dashboard" element={<ServiceOwnerDashboard />} />
+          <Route
+            path="/service-dashboard"
+            element={<ServiceOwnerDashboard />}
+          />
         </Route>
 
         {/* Optional: Catch-all for unmatched routes */}
